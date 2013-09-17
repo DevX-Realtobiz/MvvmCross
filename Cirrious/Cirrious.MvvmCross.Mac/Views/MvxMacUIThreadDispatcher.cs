@@ -1,46 +1,39 @@
-﻿// MvxMacUIThreadDispatcher.cs
-// (c) Copyright Cirrious Ltd. http://www.cirrious.com
-// MvvmCross is licensed using Microsoft Public License (Ms-PL)
-// Contributions and inspirations noted in readme.md and license.txt
+﻿// <copyright file="MvxTouchUIThreadDispatcher.cs" company="Cirrious">
+// (c) Copyright Cirrious. http://www.cirrious.com
+// This source is subject to the Microsoft Public License (Ms-PL)
+// Please see license.txt on http://opensource.org/licenses/ms-pl.html
+// All other rights reserved.
+// </copyright>
 // 
-// Project Lead - Stuart Lodge, @slodge, me@slodge.com
+// Project Lead - Stuart Lodge, Cirrious. http://www.cirrious.com
 
 using System;
-using System.Reflection;
 using System.Threading;
-using Cirrious.CrossCore.Core;
-using Cirrious.CrossCore.Exceptions;
-using Cirrious.CrossCore.Platform;
+using System.Reflection;
 using MonoMac.AppKit;
+using Cirrious.CrossCore.Exceptions;
+using Cirrious.CrossCore.Core;
+using Cirrious.CrossCore;
 
 namespace Cirrious.MvvmCross.Mac.Views
 {
     public abstract class MvxMacUIThreadDispatcher
-        : MvxMainThreadDispatcher
-    {
-        public bool RequestMainThreadAction(Action action)
-        {
-            NSApplication.SharedApplication.InvokeOnMainThread(() =>
-                {
-                    try
-                    {
-                        action();
-                    }
-                    catch (ThreadAbortException)
-                    {
-                        throw;
-                    }
-                    catch (TargetInvocationException exception)
-                    {
-                        MvxTrace.Trace("TargetInvocateException masked " + exception.InnerException.ToLongString());
-                    }
-                    catch (Exception exception)
-                    {
-                        // note - all exceptions masked!
-                        MvxTrace.Warning("Exception masked " + exception.ToLongString());
-                    }
-                });
-            return true;
-        }
-    }
+		: MvxMainThreadDispatcher
+	{
+		private readonly SynchronizationContext _uiSynchronizationContext;
+
+		protected MvxMacUIThreadDispatcher()
+		{
+			_uiSynchronizationContext = SynchronizationContext.Current;
+		}
+
+		public bool RequestMainThreadAction(Action action)
+		{
+			if (_uiSynchronizationContext == SynchronizationContext.Current)
+				action();
+			else
+				NSApplication.SharedApplication.BeginInvokeOnMainThread(() => ExceptionMaskedAction(action));
+			return true;
+		}
+	}	
 }

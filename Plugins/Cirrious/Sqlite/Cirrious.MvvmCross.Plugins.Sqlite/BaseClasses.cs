@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Cirrious.MvvmCross.Plugins.Sqlite
 {
@@ -14,6 +15,7 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
     {
         ISQLiteConnection Create(string address);
     }
+
 
     [AttributeUsage(AttributeTargets.Class)]
     public class TableAttribute : Attribute
@@ -76,10 +78,7 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
         public override bool Unique
         {
             get { return true; }
-            set
-            {
-                /* throw?  */
-            }
+            set { /* throw?  */ }
         }
     }
 
@@ -105,6 +104,17 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
         }
     }
 
+    [Flags]
+    public enum CreateFlags
+    {
+        None = 0,
+        ImplicitPK = 1,    // create a primary key for field called 'Id' (Orm.ImplicitPkName)
+        ImplicitIndex = 2, // create an index for fields ending in 'Id' (Orm.ImplicitIndexSuffix)
+        AllImplicit = 3,   // do both above
+
+        AutoIncPK = 4      // force PK field to be auto inc
+    }
+
     public interface ISQLiteConnection : IDisposable
     {
         string DatabasePath { get; }
@@ -113,11 +123,11 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
 
         bool Trace { get; set; }
 
-        int CreateTable<T>();
+        int CreateTable<T>(CreateFlags createFlags = CreateFlags.None);
 
         int DropTable<T>();
 
-        ITableMapping GetMapping(Type type);
+        ITableMapping GetMapping(Type type, CreateFlags createFlags = CreateFlags.None);
 
         ISQLiteCommand CreateCommand(string cmdText, params object[] ps);
 
@@ -151,7 +161,7 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
 
         void RunInTransaction(Action action);
 
-        int InsertAll(System.Collections.IEnumerable objects, bool beginTransaction = true);
+        int InsertAll(System.Collections.IEnumerable objects);
 
         int Insert(object obj);
 
@@ -175,13 +185,51 @@ namespace Cirrious.MvvmCross.Plugins.Sqlite
     public interface ITableMapping
     {
         string TableName { get; }
-    }
+   }
 
     public interface ISQLiteCommand
     {
+        string CommandText { get; set; }
+
+        int ExecuteNonQuery();
+
+        IEnumerable<T> ExecuteDeferredQuery<T>();
+        
+        List<T> ExecuteQuery<T>();
+
+        List<T> ExecuteQuery<T>(ITableMapping map);
+
+        IEnumerable<T> ExecuteDeferredQuery<T>(ITableMapping map);
+
+        T ExecuteScalar<T>();
+
+        void Bind(string name, object val);
+
+        void Bind(object val);
     }
 
     public interface ITableQuery<T> : IEnumerable<T> where T : new()
     {
+        ITableQuery<T> Where(Expression<Func<T, bool>> predExpr);
+        ITableQuery<T> Take(int n);
+        ITableQuery<T> Skip(int n);
+        T ElementAt(int index);
+        ITableQuery<T> OrderBy<U>(Expression<Func<T, U>> orderExpr);
+        ITableQuery<T> OrderByDescending<U>(Expression<Func<T, U>> orderExpr);
+
+        ITableQuery<TResult> Join<TInner, TKey, TResult>(
+            ITableQuery<TInner> inner,
+            Expression<Func<T, TKey>> outerKeySelector,
+            Expression<Func<TInner, TKey>> innerKeySelector,
+            Expression<Func<T, TInner, TResult>> resultSelector)
+            where TInner : new()
+            where TResult : new();
+
+        ITableQuery<TResult> Select<TResult>(Expression<Func<T, TResult>> selector)
+            where TResult : new();
+
+        int Count();
+        T First();
+        T FirstOrDefault();
     }
 }

@@ -8,9 +8,10 @@
 using System;
 using Cirrious.CrossCore.Core;
 using MonoMac.AppKit;
+using Cirrious.CrossCore.Mac.Views;
 using MonoMac.Foundation;
 
-namespace Cirrious.CrossCore.Mac.Views
+namespace Cirrious.CrossCore.Touch.Views
 {
     public class MvxEventSourceViewController
         : NSViewController
@@ -25,21 +26,40 @@ namespace Cirrious.CrossCore.Mac.Views
         {
         }
 
-		protected MvxEventSourceViewController(NSCoder coder)
-			: base(coder)
-		{
-		}		
-
         protected MvxEventSourceViewController(string nibName, NSBundle bundle)
             : base(nibName, bundle)
         {
         }
 
-		public override void LoadView ()
-		{
-			base.LoadView ();
-			LoadCalled.Raise(this);
-		}
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            ViewWillDisappearCalled.Raise(this, animated);
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            ViewDidDisappearCalled.Raise(this, animated);
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            ViewWillAppearCalled.Raise(this, animated);
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            ViewDidAppearCalled.Raise(this, animated);
+        }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            ViewDidLoadCalled.Raise(this);
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -50,7 +70,11 @@ namespace Cirrious.CrossCore.Mac.Views
             base.Dispose(disposing);
         }
 
-        public event EventHandler LoadCalled;
+        public event EventHandler ViewDidLoadCalled;
+        public event EventHandler<MvxValueEventArgs<bool>> ViewWillAppearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>> ViewDidAppearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>> ViewDidDisappearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>> ViewWillDisappearCalled;
         public event EventHandler DisposeCalled;
     }
 }

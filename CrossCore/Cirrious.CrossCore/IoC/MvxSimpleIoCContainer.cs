@@ -315,13 +315,13 @@ namespace Cirrious.CrossCore.IoC
             IResolver resolver;
             if (!_resolvers.TryGetValue(type, out resolver))
             {
-                resolved = CreateDefault(type);
+                resolved = type.CreateDefault();
                 return false;
             }
 
             if (!resolver.Supports(resolveOptions))
             {
-                resolved = CreateDefault(type);
+                resolved = type.CreateDefault();
                 return false;
             }
 
@@ -355,11 +355,6 @@ namespace Cirrious.CrossCore.IoC
             }
         }
 
-        private static object CreateDefault(Type type)
-        {
-            return type.IsValueType ? Activator.CreateInstance(type) : null;
-        }
-
         private List<object> GetIoCParameterValues(Type type, ConstructorInfo firstConstructor)
         {
             var parameters = new List<object>();
@@ -368,11 +363,18 @@ namespace Cirrious.CrossCore.IoC
                 object parameterValue;
                 if (!TryResolve(parameterInfo.ParameterType, out parameterValue))
                 {
-                    throw new MvxException(
-                        "Failed to resolve parameter for parameter {0} of type {1} when creating {2}",
-                        parameterInfo.Name,
-                        parameterInfo.ParameterType.Name,
-                        type.FullName);
+                    if (parameterInfo.IsOptional)
+                    {
+                        parameterValue = Type.Missing;
+                    }
+                    else
+                    {
+                        throw new MvxException(
+                            "Failed to resolve parameter for parameter {0} of type {1} when creating {2}",
+                            parameterInfo.Name,
+                            parameterInfo.ParameterType.Name,
+                            type.FullName);
+                    }
                 }
 
                 parameters.Add(parameterValue);

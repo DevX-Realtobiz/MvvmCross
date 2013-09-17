@@ -1,9 +1,12 @@
-// MvxApplicationDelegate.cs
-// (c) Copyright Cirrious Ltd. http://www.cirrious.com
-// MvvmCross is licensed using Microsoft Public License (Ms-PL)
-// Contributions and inspirations noted in readme.md and license.txt
+// <copyright file="MvxApplicationDelegate.cs" company="Cirrious">
+// (c) Copyright Cirrious. http://www.cirrious.com
+// This source is subject to the Microsoft Public License (Ms-PL)
+// Please see license.txt on http://opensource.org/licenses/ms-pl.html
+// All other rights reserved.
+// </copyright>
 // 
-// Project Lead - Stuart Lodge, @slodge, me@slodge.com
+// Project Lead - Stuart Lodge, Cirrious. http://www.cirrious.com
+
 
 using System;
 using Cirrious.MvvmCross.Platform;
@@ -14,29 +17,28 @@ namespace Cirrious.MvvmCross.Mac.Platform
     public class MvxApplicationDelegate : NSApplicationDelegate
                                           , IMvxLifetime
     {
-#warning Need to do lifetime events here!
+#warning Removed this lifetime functionality....
 		/*
-		public override void WillEnterForeground(NSApplication application)
+        public override void WillEnterForeground (NSApplication application)
         {
             FireLifetimeChanged(MvxLifetimeEvent.ActivatedFromMemory);
         }
-
-        public override void DidEnterBackground(NSApplication application)
+		
+        public override void DidEnterBackground (NSApplication application)
         {
             FireLifetimeChanged(MvxLifetimeEvent.Deactivated);
         }
-
-        public override void WillTerminate(NSApplication application)
+		
+        public override void WillTerminate (NSApplication application)
         {
             FireLifetimeChanged(MvxLifetimeEvent.Closing);
         }
-
-        public override void FinishedLaunching(NSApplication application)
+		
+        public override void FinishedLaunching (NSApplication application)
         {
             FireLifetimeChanged(MvxLifetimeEvent.Launching);
         }
-        */
-
+		*/
         private void FireLifetimeChanged(MvxLifetimeEvent which)
         {
             var handler = LifetimeChanged;
@@ -45,5 +47,6 @@ namespace Cirrious.MvvmCross.Mac.Platform
         }
 
         public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
+		
     }
 }

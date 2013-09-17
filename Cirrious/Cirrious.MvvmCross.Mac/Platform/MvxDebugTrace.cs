@@ -1,22 +1,24 @@
-// MvxDebugTrace.cs
-// (c) Copyright Cirrious Ltd. http://www.cirrious.com
-// MvvmCross is licensed using Microsoft Public License (Ms-PL)
-// Contributions and inspirations noted in readme.md and license.txt
+// <copyright file="MvxDebugTrace.cs" company="Cirrious">
+// (c) Copyright Cirrious. http://www.cirrious.com
+// This source is subject to the Microsoft Public License (Ms-PL)
+// Please see license.txt on http://opensource.org/licenses/ms-pl.html
+// All other rights reserved.
+// </copyright>
 // 
-// Project Lead - Stuart Lodge, @slodge, me@slodge.com
+// Project Lead - Stuart Lodge, Cirrious. http://www.cirrious.com
 
 using System;
+
+using Cirrious.CrossCore.Interfaces.Platform.Diagnostics;
 using Cirrious.CrossCore.Platform;
+
+
+
 
 namespace Cirrious.MvvmCross.Mac.Platform
 {
     public class MvxDebugTrace : IMvxTrace
     {
-        public void Trace(MvxTraceLevel level, string tag, Func<string> message)
-        {
-            Console.WriteLine(tag + ":" + level + ":" + message());
-        }
-
         public void Trace(MvxTraceLevel level, string tag, string message)
         {
             Console.WriteLine(tag + ": " + level + ": " + message);

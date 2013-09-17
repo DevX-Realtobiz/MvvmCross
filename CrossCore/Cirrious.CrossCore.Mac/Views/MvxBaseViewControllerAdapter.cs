@@ -6,6 +6,7 @@
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
 using System;
+using Cirrious.CrossCore.Core;
 using MonoMac.AppKit;
 
 namespace Cirrious.CrossCore.Mac.Views
@@ -28,15 +29,35 @@ namespace Cirrious.CrossCore.Mac.Views
                 throw new ArgumentException("eventSource - eventSource should be a NSViewController");
 
             _eventSource = eventSource;
+            _eventSource.ViewDidAppearCalled += HandleViewDidAppearCalled;
+            _eventSource.ViewDidDisappearCalled += HandleViewDidDisappearCalled;
+            _eventSource.ViewWillAppearCalled += HandleViewWillAppearCalled;
+            _eventSource.ViewWillDisappearCalled += HandleViewWillDisappearCalled;
             _eventSource.DisposeCalled += HandleDisposeCalled;
-			_eventSource.LoadCalled += HandleLoadCalled;
+            _eventSource.ViewDidLoadCalled += HandleViewDidLoadCalled;
         }
 
-        public virtual void HandleLoadCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidLoadCalled(object sender, EventArgs e)
         {
         }
 
         public virtual void HandleDisposeCalled(object sender, EventArgs e)
+        {
+        }
+
+        public virtual void HandleViewWillDisappearCalled(object sender, MvxValueEventArgs<bool> e)
+        {
+        }
+
+        public virtual void HandleViewWillAppearCalled(object sender, MvxValueEventArgs<bool> e)
+        {
+        }
+
+        public virtual void HandleViewDidDisappearCalled(object sender, MvxValueEventArgs<bool> e)
+        {
+        }
+
+        public virtual void HandleViewDidAppearCalled(object sender, MvxValueEventArgs<bool> e)
         {
         }
     }

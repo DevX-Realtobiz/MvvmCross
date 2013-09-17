@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Reflection;
 using Cirrious.CrossCore.Core;
 
@@ -20,6 +21,22 @@ namespace Cirrious.CrossCore.WeakSubscription
                                                                                   eventHandler)
         {
             return new MvxNotifyPropertyChangedEventSubscription(source, eventHandler);
+        }
+
+        public static MvxNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(this INotifyPropertyChanged source,
+                                                                               Expression<Func<T>> property,
+                                                                               EventHandler<PropertyChangedEventArgs>
+                                                                                   eventHandler)
+        {
+            return new MvxNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
+        }
+
+        public static MvxNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(this INotifyPropertyChanged source,
+                                                                               string property,
+                                                                               EventHandler<PropertyChangedEventArgs>
+                                                                                   eventHandler)
+        {
+            return new MvxNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
         }
 
         public static MvxNotifyCollectionChangedEventSubscription WeakSubscribe(this INotifyCollectionChanged source,

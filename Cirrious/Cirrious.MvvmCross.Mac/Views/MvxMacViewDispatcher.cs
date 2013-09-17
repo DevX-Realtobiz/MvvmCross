@@ -1,21 +1,26 @@
-﻿// MvxMacViewDispatcher.cs
-// (c) Copyright Cirrious Ltd. http://www.cirrious.com
-// MvvmCross is licensed using Microsoft Public License (Ms-PL)
-// Contributions and inspirations noted in readme.md and license.txt
+// <copyright file="MvxTouchViewDispatcher.cs" company="Cirrious">
+// (c) Copyright Cirrious. http://www.cirrious.com
+// This source is subject to the Microsoft Public License (Ms-PL)
+// Please see license.txt on http://opensource.org/licenses/ms-pl.html
+// All other rights reserved.
+// </copyright>
 // 
-// Project Lead - Stuart Lodge, @slodge, me@slodge.com
+// Project Lead - Stuart Lodge, Cirrious. http://www.cirrious.com
 
 using System;
-using Cirrious.CrossCore.Platform;
-using Cirrious.MvvmCross.Mac.Views.Presenters;
-using Cirrious.MvvmCross.ViewModels;
+using Cirrious.MvvmCross.Interfaces.ViewModels;
+using Cirrious.MvvmCross.Interfaces.Views;
+using Cirrious.MvvmCross.Mac.Interfaces;
 using Cirrious.MvvmCross.Views;
+using Cirrious.MvvmCross.ViewModels;
+using Cirrious.CrossCore.Platform.Diagnostics;
+using Cirrious.CrossCore;
 
 namespace Cirrious.MvvmCross.Mac.Views
 {
-    public class MvxMacViewDispatcher
+    public class MvxMacViewDispatcher 
         : MvxMacUIThreadDispatcher
-          , IMvxViewDispatcher
+        , IMvxViewDispatcher
     {
         private readonly IMvxMacViewPresenter _presenter;
 
@@ -24,19 +29,24 @@ namespace Cirrious.MvvmCross.Mac.Views
             _presenter = presenter;
         }
 
-        public bool ShowViewModel(MvxViewModelRequest request)
+        public bool RequestNavigate(MvxViewModelRequest request)
         {
             Action action = () =>
-                {
-                    MvxTrace.TaggedTrace("MacNavigation", "Navigate requested");
-                    _presenter.Show(request);
-                };
+                                {
+                                    Mvx.TaggedTrace("MacNavigation", "Navigate requested");
+                                    _presenter.Show(request);
+                                };
             return RequestMainThreadAction(action);
         }
-
-        public bool ChangePresentation(MvxPresentationHint hint)
+        
+		public bool ChangePresentation(MvxPresentationHint hint)
         {
-            return RequestMainThreadAction(() => _presenter.ChangePresentation(hint));
+            Action action = () =>
+                                {
+                                    Mvx.TaggedTrace("MacNavigation", "Change presentation requested");
+                                    _presenter.ChangePresentation(hint);
+                                };
+            return RequestMainThreadAction(action);
         }
     }
 }

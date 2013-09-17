@@ -9,8 +9,7 @@
     <RootNamespace>Cirrious.MvvmCross</RootNamespace>
     <AssemblyName>Cirrious.MvvmCross</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile Condition="'$(OS)' != 'Windows_NT'">Profile1</TargetFrameworkProfile>
-    <TargetFrameworkProfile Condition="'$(OS)' == 'Windows_NT'">Profile104</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile104</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>10.0.0</ProductVersion>
@@ -52,14 +51,21 @@
     <Compile Include="Parse\StringDictionary\MvxStringDictionaryWriter.cs" />
     <Compile Include="Platform\IMvxFillableStringToTypeParser.cs" />
     <Compile Include="Platform\IMvxStringToTypeParser.cs" />
-    <Compile Include="Platform\MvxStringToTypeParserSingleton.cs" />
     <Compile Include="ViewModels\IMvxCommandCollection.cs" />
     <Compile Include="ViewModels\IMvxCommandCollectionBuilder.cs" />
+    <Compile Include="ViewModels\IMvxInpcInterceptor.cs" />
+    <Compile Include="ViewModels\IMvxNotifyPropertyChanged.cs" />
+    <Compile Include="IMvxSingletonCache.cs" />
+    <Compile Include="Platform\IMvxSettings.cs" />
     <Compile Include="ViewModels\IMvxTypeFinder.cs" />
+    <Compile Include="ViewModels\IMvxViewModelByNameRegistry.cs" />
     <Compile Include="ViewModels\IMvxViewModelTypeFinder.cs" />
     <Compile Include="ViewModels\IMvxTypeToTypeLookupBuilder.cs" />
     <Compile Include="ViewModels\IMvxViewModelByNameLookup.cs" />
     <Compile Include="ViewModels\MvxPropertyChangedListener.cs" />
+    <Compile Include="MvxSingletonCache.cs" />
+    <Compile Include="ViewModels\MvxInpcInterceptionResult.cs" />
+    <Compile Include="Platform\MvxSettings.cs" />
     <Compile Include="Views\IMvxViewPresenter.cs" />
     <Compile Include="ViewModels\MvxClosePresentationHint.cs" />
     <Compile Include="ViewModels\MvxCommandAttribute.cs" />
@@ -80,7 +86,6 @@
     <Compile Include="ViewModels\MvxViewModelLoader.cs" />
     <Compile Include="ViewModels\IMvxNavigationSerializer.cs" />
     <Compile Include="ViewModels\IMvxBundle.cs" />
-    <Compile Include="ViewModels\MvxNotifyPropertyExtensionMethods.cs" />
     <Compile Include="ViewModels\MvxBundle.cs" />
     <Compile Include="Platform\MvxSimplePropertyDictionaryExtensionMethods.cs" />
     <Compile Include="ViewModels\MvxViewModelExtensions.cs" />
