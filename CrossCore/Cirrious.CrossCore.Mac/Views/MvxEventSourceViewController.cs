@@ -11,7 +11,7 @@ using MonoMac.AppKit;
 using Cirrious.CrossCore.Mac.Views;
 using MonoMac.Foundation;
 
-namespace Cirrious.CrossCore.Touch.Views
+namespace Cirrious.CrossCore.Mac.Views
 {
     public class MvxEventSourceViewController
         : NSViewController
@@ -31,6 +31,7 @@ namespace Cirrious.CrossCore.Touch.Views
         {
         }
 
+		/*
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
@@ -60,13 +61,14 @@ namespace Cirrious.CrossCore.Touch.Views
             base.ViewDidLoad();
             ViewDidLoadCalled.Raise(this);
         }
+		*/
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                DisposeCalled.Raise(this);
-            }
+			if (disposing) 
+			{
+				DisposeCalled.Raise (this);
+			}
             base.Dispose(disposing);
         }
 

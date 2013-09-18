@@ -1,4 +1,4 @@
-// MvxUIDatePickerDateTargetBinding.cs
+// MvxUIDatePickerTimeTargetBinding.cs
 // (c) Copyright Cirrious Ltd. http://www.cirrious.com
 // MvvmCross is licensed using Microsoft Public License (Ms-PL)
 // Contributions and inspirations noted in readme.md and license.txt
@@ -10,27 +10,44 @@ using System.Reflection;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-	public class MvxNSDatePickerDateTargetBinding : MvxBaseNSDatePickerTargetBinding
+	public class MvxNSDatePickerTimeTargetBinding : MvxBaseNSDatePickerTargetBinding
 	{
-		public MvxNSDatePickerDateTargetBinding(object target, PropertyInfo targetPropertyInfo)
+		public MvxNSDatePickerTimeTargetBinding(object target, PropertyInfo targetPropertyInfo)
 			: base(target, targetPropertyInfo)
 		{
 		}
 
-		protected override object GetValueFrom(UIDatePicker view)
+		protected override object GetValueFrom(NSDatePicker view)
 		{
-			return ((DateTime) view.Date).Date;
+			var components = NSCalendar.CurrentCalendar.Components(
+				NSCalendarUnit.Hour | NSCalendarUnit.Minute | NSCalendarUnit.Second, 
+				view.DateValue);
+			return new TimeSpan(components.Hour, components.Minute, components.Second);
+		}
+
+		public override Type TargetType
+		{
+			get { return typeof(TimeSpan); }
 		}
 
 		protected override object MakeSafeValue(object value)
 		{
 			if (value == null)
-				value = DateTime.UtcNow;
-			var date = (DateTime) value;
-			NSDate nsDate = date;
-			return nsDate;
+				value = TimeSpan.FromSeconds(0);
+			var time = (TimeSpan) value;
+			var now = DateTime.Now;
+			var date = new DateTime(
+				now.Year,
+				now.Month,
+				now.Day,
+				time.Hours,
+				time.Minutes,
+				time.Seconds,
+				DateTimeKind.Local);
+
+			return date;
 		}
 	}
 }

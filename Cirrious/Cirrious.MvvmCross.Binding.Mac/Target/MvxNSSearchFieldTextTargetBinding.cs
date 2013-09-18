@@ -8,28 +8,30 @@
 using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-    public class MvxUISearchBarTextTargetBinding : MvxPropertyInfoTargetBinding<UISearchBar>
+    public class MvxNSSearchFieldTextTargetBinding : MvxPropertyInfoTargetBinding<NSSearchField>
     {
-        public MvxUISearchBarTextTargetBinding(object target, PropertyInfo targetPropertyInfo)
+		public MvxNSSearchFieldTextTargetBinding(object target, PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)
         {
-            var searchBar = View;
-            if (searchBar == null)
+            var searchField = View;
+            if (searchField == null)
             {
                 MvxBindingTrace.Trace(MvxTraceLevel.Error,
-                                      "Error - UISearchBar is null in MvxUISearchBarTextTargetBinding");
+				                      "Error - NSSearchField is null in MvxNSSearchFieldTextTargetBinding");
             }
             else
             {
-                searchBar.TextChanged += HandleSearchBarValueChanged;
+                searchField.TextChanged += HandleSearchBarValueChanged;
+				searchField.Action = new MonoMac.ObjCRuntime.Selector ("searchFieldAction:");
             }
         }
 
-        private void HandleSearchBarValueChanged(object sender, UISearchBarTextChangedEventArgs e)
+		[Export("searchFieldAction:")]
+        private void searchFieldAction()
         {
             FireValueChanged(View.Text);
         }

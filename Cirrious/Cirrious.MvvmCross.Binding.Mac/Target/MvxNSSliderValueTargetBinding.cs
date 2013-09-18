@@ -8,32 +8,34 @@
 using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
+using MonoMac.Foundation;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-    public class MvxUISliderValueTargetBinding : MvxPropertyInfoTargetBinding<UISlider>
+    public class MvxNSSliderValueTargetBinding : MvxPropertyInfoTargetBinding<NSSlider>
     {
-        public MvxUISliderValueTargetBinding(object target, PropertyInfo targetPropertyInfo)
+        public MvxNSSliderValueTargetBinding(object target, PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)
         {
             var slider = View;
             if (slider == null)
             {
-                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - UISlider is null in MvxUISliderValueTargetBinding");
+                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - NSSlider is null in MvxNSSliderValueTargetBinding");
             }
             else
             {
-                slider.ValueChanged += HandleSliderValueChanged;
+				slider.Action = new MonoMac.ObjCRuntime.Selector ("sliderAction:");
             }
         }
 
-        private void HandleSliderValueChanged(object sender, System.EventArgs e)
+		[Export("sliderAction:")]
+		private void sliderAction()
         {
             var view = View;
             if (view == null)
                 return;
-            FireValueChanged(view.Value);
+            FireValueChanged(view.IntValue);
         }
 
         public override MvxBindingMode DefaultMode
@@ -49,7 +51,7 @@ namespace Cirrious.MvvmCross.Binding.Touch.Target
                 var slider = View;
                 if (slider != null)
                 {
-                    slider.ValueChanged -= HandleSliderValueChanged;
+//                    slider.ValueChanged -= HandleSliderValueChanged;
                 }
             }
         }

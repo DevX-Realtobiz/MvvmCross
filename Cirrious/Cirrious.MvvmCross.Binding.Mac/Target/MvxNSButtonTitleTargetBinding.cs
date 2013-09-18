@@ -7,23 +7,23 @@
 
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-    public class MvxUIButtonTitleTargetBinding : MvxTargetBinding
+    public class MvxNSButtonTitleTargetBinding : MvxTargetBinding
     {
-        protected UIButton Button
+        protected NSButton Button
         {
-            get { return base.Target as UIButton; }
+            get { return base.Target as NSButton; }
         }
 
-        public MvxUIButtonTitleTargetBinding(UIButton button)
+        public MvxNSButtonTitleTargetBinding(NSButton button)
             : base(button)
         {
             if (button == null)
             {
-                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - UIButton is null in MvxUIButtonTitleTargetBinding");
+                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - NSButton is null in MvxNSButtonTitleTargetBinding");
             }
         }
 

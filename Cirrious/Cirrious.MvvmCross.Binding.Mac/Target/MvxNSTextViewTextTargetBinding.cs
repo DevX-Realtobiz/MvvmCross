@@ -9,20 +9,20 @@ using System;
 using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-    public class MvxUITextViewTextTargetBinding : MvxPropertyInfoTargetBinding<UITextView>
+    public class MvxNSTextViewTextTargetBinding : MvxPropertyInfoTargetBinding<NSTextView>
     {
-        public MvxUITextViewTextTargetBinding(object target, PropertyInfo targetPropertyInfo)
+		public MvxNSTextViewTextTargetBinding(object target, PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)
         {
             var editText = View;
             if (editText == null)
             {
                 MvxBindingTrace.Trace(MvxTraceLevel.Error,
-                                      "Error - UITextView is null in MvxUITextViewTextTargetBinding");
+                                      "Error - NSTextView is null in MvxNSTextViewTextTargetBinding");
             }
             else
             {

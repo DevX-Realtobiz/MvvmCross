@@ -8,22 +8,23 @@
 using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Target
+namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
-    public class MvxUISwitchOnTargetBinding : MvxPropertyInfoTargetBinding<UISwitch>
+    public class MvxNSSwitchOnTargetBinding : MvxPropertyInfoTargetBinding<NSButton>
     {
-        public MvxUISwitchOnTargetBinding(object target, PropertyInfo targetPropertyInfo)
+        public MvxNSSwitchOnTargetBinding(object target, PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)
         {
             var view = View;
             if (view == null)
             {
-                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - Switch is null in MvxUISwitchOnTargetBinding");
+                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - NSButton is null in MvxNSSwitchOnTargetBinding");
             }
             else
-            {
+            {			
+				view.
                 view.ValueChanged += HandleValueChanged;
             }
         }
