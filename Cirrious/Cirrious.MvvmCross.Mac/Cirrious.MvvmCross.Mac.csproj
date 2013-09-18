@@ -52,6 +52,10 @@
     <Compile Include="Views\MvxViewModelInstanceRequest.cs" />
     <Compile Include="Views\Presenters\MvxBaseMacViewPresenter.cs" />
     <Compile Include="Views\Presenters\IMvxMacViewPresenter.cs" />
+    <Compile Include="Views\MvxViewControllerAdaptingExtensions.cs" />
+    <Compile Include="Views\MvxViewControllerAdapter.cs" />
+    <Compile Include="Views\MvxViewControllerExtensionMethods.cs" />
+    <Compile Include="Views\MvxBindingViewControllerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CrossCore\Cirrious.CrossCore\Cirrious.CrossCore.csproj">

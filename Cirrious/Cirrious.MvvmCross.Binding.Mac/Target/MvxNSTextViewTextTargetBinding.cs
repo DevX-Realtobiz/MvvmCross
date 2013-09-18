@@ -26,16 +26,17 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
             }
             else
             {
-                editText.Changed += EditTextOnChanged;
+				// Todo: Perhaps we want to trigger on editing complete rather than didChange
+				editText.TextDidChange += EditTextDidChange;
             }
         }
 
-        private void EditTextOnChanged(object sender, EventArgs eventArgs)
+		private void EditTextDidChange(object sender, EventArgs eventArgs)
         {
             var view = View;
             if (view == null)
                 return;
-            FireValueChanged(view.Text);
+            FireValueChanged(view.TextStorage.ToString());
         }
 
         public override MvxBindingMode DefaultMode
@@ -51,7 +52,7 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
                 var editText = View;
                 if (editText != null)
                 {
-                    editText.Changed -= EditTextOnChanged;
+					editText.TextDidChange -= EditTextDidChange;
                 }
             }
         }

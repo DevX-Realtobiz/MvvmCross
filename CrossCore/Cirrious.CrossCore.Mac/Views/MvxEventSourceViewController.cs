@@ -26,6 +26,11 @@ namespace Cirrious.CrossCore.Mac.Views
         {
         }
 
+		protected MvxEventSourceViewController(NSCoder coder)
+			: base(coder)
+		{
+		}
+
         protected MvxEventSourceViewController(string nibName, NSBundle bundle)
             : base(nibName, bundle)
         {

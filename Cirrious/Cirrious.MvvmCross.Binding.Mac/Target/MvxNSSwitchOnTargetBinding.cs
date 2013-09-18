@@ -9,6 +9,7 @@ using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
 using MonoMac.AppKit;
+using MonoMac.Foundation;
 
 namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
@@ -17,24 +18,24 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
         public MvxNSSwitchOnTargetBinding(object target, PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)
         {
-            var view = View;
-            if (view == null)
+            var checkBox = View;
+            if (checkBox == null)
             {
                 MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - NSButton is null in MvxNSSwitchOnTargetBinding");
             }
             else
             {			
-				view.
-                view.ValueChanged += HandleValueChanged;
+				checkBox.Action = new MonoMac.ObjCRuntime.Selector ("checkBoxAction:");
             }
         }
 
-        private void HandleValueChanged(object sender, System.EventArgs e)
+		[Export("checkBoxAction:")]
+        private void checkBoxAction()
         {
             var view = View;
             if (view == null)
                 return;
-            FireValueChanged(view.On);
+            FireValueChanged(view.State == NSCellStateValue.On);
         }
 
         public override MvxBindingMode DefaultMode
@@ -50,7 +51,7 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
                 var view = View;
                 if (view != null)
                 {
-                    view.ValueChanged -= HandleValueChanged;
+//                    view.ValueChanged -= HandleValueChanged;
                 }
             }
         }

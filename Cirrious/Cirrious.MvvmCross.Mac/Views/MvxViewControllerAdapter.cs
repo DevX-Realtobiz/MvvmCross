@@ -25,10 +25,10 @@ namespace Cirrious.MvvmCross.Mac.Views
                 throw new ArgumentException("eventSource", "eventSource should be a IMvxMacView");
         }
 
-        public override void HandleLoadCalled(object sender, EventArgs e)
+		public override void HandleViewDidLoadCalled(object sender, EventArgs e)
         {
             MacView.OnViewCreate();
-            base.HandleLoadCalled(sender, e);
+			base.HandleViewDidLoadCalled(sender, e);
         }
 
         public override void HandleDisposeCalled(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
 using MonoMac.AppKit;
+using MonoMac.Foundation;
 
 namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
@@ -25,7 +26,6 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
             }
             else
             {
-                searchField.TextChanged += HandleSearchBarValueChanged;
 				searchField.Action = new MonoMac.ObjCRuntime.Selector ("searchFieldAction:");
             }
         }
@@ -33,7 +33,7 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
 		[Export("searchFieldAction:")]
         private void searchFieldAction()
         {
-            FireValueChanged(View.Text);
+            FireValueChanged(View.StringValue);
         }
 
         public override MvxBindingMode DefaultMode
@@ -49,7 +49,7 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
                 var searchBar = View;
                 if (searchBar != null)
                 {
-                    searchBar.TextChanged -= HandleSearchBarValueChanged;
+//                    searchBar.TextChanged -= HandleSearchBarValueChanged;
                 }
             }
         }

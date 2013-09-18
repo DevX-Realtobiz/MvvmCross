@@ -9,6 +9,7 @@ using System.Reflection;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding.Bindings.Target;
 using MonoMac.AppKit;
+using MonoMac.Foundation;
 
 namespace Cirrious.MvvmCross.Binding.Mac.Target
 {
@@ -25,16 +26,17 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
             }
             else
             {
-                editText.EditingChanged += HandleEditTextValueChanged;
+				editText.Action = new MonoMac.ObjCRuntime.Selector ("editTextAction:");
             }
         }
 
-        private void HandleEditTextValueChanged(object sender, System.EventArgs e)
+		[Export("editTextAction:")]
+        private void editTextAction()
         {
             var view = View;
             if (view == null)
                 return;
-            FireValueChanged(view.Text);
+            FireValueChanged(view.StringValue);
         }
 
         public override MvxBindingMode DefaultMode
@@ -50,7 +52,7 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
                 var editText = View;
                 if (editText != null)
                 {
-                    editText.EditingChanged -= HandleEditTextValueChanged;
+//                    editText.EditingChanged -= HandleEditTextValueChanged;
                 }
             }
         }

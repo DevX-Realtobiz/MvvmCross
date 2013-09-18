@@ -42,8 +42,8 @@ namespace Cirrious.MvvmCross.Binding.Mac.Target
             var button = Button;
             if (button == null)
                 return;
-
-            button.SetTitle(value as string, UIControlState.Normal);
+		
+			button.Title = value as string;
         }
     }
 }
