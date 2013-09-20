@@ -50,9 +50,9 @@ namespace Cirrious.MvvmCross.Binding.Mac
 				view => new MvxNSDatePickerTimeTargetBinding(view, (typeof(NSDatePicker).GetProperty("Date"))));
 
 			registry.RegisterPropertyInfoBindingFactory(typeof (MvxNSTextFieldTextTargetBinding), typeof (NSTextField),
-			                                            "Text");
+			                                            "StringValue");
 			registry.RegisterPropertyInfoBindingFactory(typeof (MvxNSTextViewTextTargetBinding), typeof (NSTextView),
-			                                            "Text");
+			                                            "StringValue");
 
 			registry.RegisterPropertyInfoBindingFactory(typeof (MvxNSSwitchOnTargetBinding), typeof (NSButton), "On");
 			registry.RegisterPropertyInfoBindingFactory(typeof(MvxNSSearchFieldTextTargetBinding), typeof(NSSearchField), "Text");

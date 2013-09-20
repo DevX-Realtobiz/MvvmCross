@@ -8,7 +8,7 @@
 using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Binding.BindingContext;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Views
+namespace Cirrious.MvvmCross.Binding.Mac.Views
 {
     public interface IMvxBindable
         : IMvxBindingContextOwner

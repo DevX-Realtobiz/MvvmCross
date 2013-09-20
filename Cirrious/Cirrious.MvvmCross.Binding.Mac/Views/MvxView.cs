@@ -8,12 +8,13 @@
 using System;
 using System.Drawing;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using MonoTouch.UIKit;
+using MonoMac.AppKit;
+using MonoMac.Foundation;
 
-namespace Cirrious.MvvmCross.Binding.Touch.Views
+namespace Cirrious.MvvmCross.Binding.Mac.Views
 {
     public class MvxView
-        : UIView
+        : NSView
           , IMvxBindable
     {
         public IMvxBindingContext BindingContext { get; set; }
@@ -28,6 +29,12 @@ namespace Cirrious.MvvmCross.Binding.Touch.Views
         {
             this.CreateBindingContext();
         }
+
+		public MvxView(NSCoder coder)
+			: base(coder)
+		{
+			this.CreateBindingContext();
+		}
 
         public MvxView(RectangleF frame)
             : base(frame)

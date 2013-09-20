@@ -4,7 +4,7 @@ using Cirrious.MvvmCross.Mac.Platform;
 using Cirrious.MvvmCross.Mac.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
 
-namespace FirstDemo.Mac
+namespace FirstDemo2.Mac
 {
 	public class Setup : MvxMacSetup
 	{

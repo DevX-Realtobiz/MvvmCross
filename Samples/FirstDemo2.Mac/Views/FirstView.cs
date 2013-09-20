@@ -6,6 +6,7 @@ using MonoMac.AppKit;
 using Cirrious.MvvmCross.Mac.Views;
 using FirstDemo.Core.ViewModels;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using System.Drawing;
 
 namespace FirstDemo2.Mac
 {
@@ -24,14 +25,31 @@ namespace FirstDemo2.Mac
 			Initialize ();
 		}
 		// Call to load from the XIB/NIB file
-		public FirstView () : base ("UniveralView", NSBundle.MainBundle)
+		public FirstView () : base ("BaseView", NSBundle.MainBundle)
 		{
 			Initialize ();
 		}
 		// Shared initialization code
 		void Initialize ()
-		{	
-			base.View = new UniversalView ();
+		{			
+		}
+		#endregion
+		//strongly typed view accessor
+		public new BaseView View {
+			get {
+				return (BaseView)base.View;
+			}
+		}
+
+		public override void LoadView ()
+		{
+			base.View = new BaseView (new RectangleF (0, 0, 500, 500));
+			base.LoadView ();
+		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
 			var textEditFirst = new NSTextField(new System.Drawing.RectangleF(0,0,320,40));
 			View.AddSubview (textEditFirst);
@@ -45,13 +63,6 @@ namespace FirstDemo2.Mac
 			set.Bind (textEditSecond).For(v => v.StringValue).To (vm => vm.LastName);
 			set.Bind (labelFull).For(v => v.StringValue).To (vm => vm.FullName);	
 			set.Apply ();
-		}
-		#endregion
-		//strongly typed view accessor
-		public new UniversalView View {
-			get {
-				return (UniversalView)base.View;
-			}
 		}
 	}
 }

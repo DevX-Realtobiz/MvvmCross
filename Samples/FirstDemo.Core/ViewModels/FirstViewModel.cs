@@ -4,9 +4,11 @@ namespace FirstDemo.Core.ViewModels
 {
 	public class FirstViewModel : MvxViewModel
 	{
-		public string Hello { get { return "Hello Mvvmross"; } }
+		public FirstViewModel()
+		{
+		}
 
-		private string _firstName;
+		private string _firstName = string.Empty;
 		public string FirstName
 		{
 			get { return _firstName; } 
@@ -16,7 +18,7 @@ namespace FirstDemo.Core.ViewModels
 			}
 		}
 
-		private string _lastName;
+		private string _lastName = string.Empty;
 		public string LastName
 		{
 			get { return _lastName; } 

@@ -105,7 +105,7 @@
       <Name>Cirrious.CrossCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\CrossCore\Cirrious.CrossCore.Mac\Cirrious.CrossCore.Mac.csproj">
-      <Project>{B7D43A77-605C-4618-8917-82DB9AB6F6A9}</Project>
+      <Project>{596C75FB-F491-4037-89F6-B4F34183D83D}</Project>
       <Name>Cirrious.CrossCore.Mac</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cirrious\Cirrious.MvvmCross\Cirrious.MvvmCross.csproj">
@@ -124,13 +124,16 @@
       <Project>{B3B40D12-3CF1-4BCE-B599-4E3AE438D39F}</Project>
       <Name>Cirrious.MvvmCross.Mac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cirrious\Cirrious.MvvmCross.Localisation\Cirrious.MvvmCross.Localization.csproj">
+    <ProjectReference Include="..\Cirrious\Cirrious.MvvmCross.Localization\Cirrious.MvvmCross.Localization.csproj">
       <Project>{D89351C1-D48F-4AD0-A0B9-353A93425AB7}</Project>
       <Name>Cirrious.MvvmCross.Localization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\mvxTutorials\Sample - TwitterSearch\TwitterSearch.Core\TwitterSearch.Core.csproj">
-      <Project>{56BA67C1-B6E9-4FB5-8EF7-B2BC7DE1AB4D}</Project>
-      <Name>TwitterSearch.Core</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Build\Intermediates\TwitterSearch.UI.Mac.build\MonoMac\TwitterSearch.UI.Mac.build\TwitterSearch.UI.Mac-all-target-headers.hmap" />
+    <BundleResource Include="Build\Intermediates\TwitterSearch.UI.Mac.build\MonoMac\TwitterSearch.UI.Mac.build\TwitterSearch.UI.Mac-generated-files.hmap" />
+    <BundleResource Include="Build\Intermediates\TwitterSearch.UI.Mac.build\MonoMac\TwitterSearch.UI.Mac.build\TwitterSearch.UI.Mac-own-target-headers.hmap" />
+    <BundleResource Include="Build\Intermediates\TwitterSearch.UI.Mac.build\MonoMac\TwitterSearch.UI.Mac.build\TwitterSearch.UI.Mac-project-headers.hmap" />
+    <BundleResource Include="Build\Intermediates\TwitterSearch.UI.Mac.build\MonoMac\TwitterSearch.UI.Mac.build\TwitterSearch.UI.Mac.hmap" />
   </ItemGroup>
 </Project>
