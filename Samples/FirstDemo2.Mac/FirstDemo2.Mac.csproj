@@ -79,15 +79,15 @@
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\SecondView.cs" />
-    <Compile Include="Views\SecondView.designer.cs">
-      <DependentUpon>SecondView.cs</DependentUpon>
+    <Compile Include="Views\FirstView.designer.cs">
+      <DependentUpon>FirstView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstView.cs" />
+    <Compile Include="Views\FirstViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />
-    <InterfaceDefinition Include="Views\SecondView.xib" />
+    <InterfaceDefinition Include="Views\FirstView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
