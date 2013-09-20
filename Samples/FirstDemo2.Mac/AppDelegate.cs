@@ -18,7 +18,7 @@ namespace FirstDemo2.Mac
 
 		public override void FinishedLaunching (NSObject notification)
 		{
-			_window = new NSWindow (new RectangleF(200,200,100,100), NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled,
+			_window = new NSWindow (new RectangleF(200,200,400,400), NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled,
 			                        NSBackingStore.Buffered, false, NSScreen.MainScreen);
 
 			var presenter = new MvxMacViewPresenter (this, _window);

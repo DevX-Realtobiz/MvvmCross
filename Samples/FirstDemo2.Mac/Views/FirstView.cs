@@ -4,9 +4,8 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 using Cirrious.MvvmCross.Mac.Views;
-using FirstDemo.Core.ViewModels;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using System.Drawing;
+using FirstDemo.Core.ViewModels;
 
 namespace FirstDemo2.Mac
 {
@@ -25,26 +24,20 @@ namespace FirstDemo2.Mac
 			Initialize ();
 		}
 		// Call to load from the XIB/NIB file
-		public FirstView () : base ("BaseView", NSBundle.MainBundle)
+		public FirstView () : base ("SecondView", NSBundle.MainBundle)
 		{
 			Initialize ();
 		}
 		// Shared initialization code
 		void Initialize ()
-		{			
+		{
 		}
 		#endregion
 		//strongly typed view accessor
-		public new BaseView View {
+		public new SecondView View {
 			get {
-				return (BaseView)base.View;
+				return (SecondView)base.View;
 			}
-		}
-
-		public override void LoadView ()
-		{
-			base.View = new BaseView (new RectangleF (0, 0, 500, 500));
-			base.LoadView ();
 		}
 
 		public override void ViewDidLoad ()
