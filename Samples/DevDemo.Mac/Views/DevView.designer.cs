@@ -9,18 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace DevDemo.Mac
 {
-	[Register ("DevView")]
-	partial class DevView
-	{
-		
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
-
 	[Register ("DevViewController")]
 	partial class DevViewController
 	{
+		[Outlet]
+		MonoMac.AppKit.NSBrowser devBrowser { get; set; }
+
 		[Outlet]
 		MonoMac.AppKit.NSButton devButton { get; set; }
 
@@ -34,6 +28,9 @@ namespace DevDemo.Mac
 		MonoMac.AppKit.NSTextField devMultiTextField { get; set; }
 
 		[Outlet]
+		MonoMac.AppKit.NSOutlineView devOutline { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSOutlineView devOutlineView { get; set; }
 
 		[Outlet]
@@ -41,6 +38,9 @@ namespace DevDemo.Mac
 
 		[Outlet]
 		MonoMac.AppKit.NSTextField devSliderText { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTableView devTableView { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSTextField devTextField { get; set; }
@@ -53,6 +53,21 @@ namespace DevDemo.Mac
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (devBrowser != null) {
+				devBrowser.Dispose ();
+				devBrowser = null;
+			}
+
+			if (devTableView != null) {
+				devTableView.Dispose ();
+				devTableView = null;
+			}
+
+			if (devOutline != null) {
+				devOutline.Dispose ();
+				devOutline = null;
+			}
+
 			if (devButton != null) {
 				devButton.Dispose ();
 				devButton = null;
@@ -102,6 +117,15 @@ namespace DevDemo.Mac
 				devTextView2.Dispose ();
 				devTextView2 = null;
 			}
+		}
+	}
+
+	[Register ("DevView")]
+	partial class DevView
+	{
+		
+		void ReleaseDesignerOutlets ()
+		{
 		}
 	}
 }

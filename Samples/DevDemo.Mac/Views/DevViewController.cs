@@ -56,6 +56,8 @@ namespace DevDemo.Mac
 			set.Bind (devSliderText).To (vm => vm.SliderText);
 			set.Bind (devCollectionView).To (vm => vm.Coloras);
 
+
+
 			set.Apply ();
 		}
 	}

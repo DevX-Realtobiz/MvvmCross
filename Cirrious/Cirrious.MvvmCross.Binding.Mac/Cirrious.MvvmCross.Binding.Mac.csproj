@@ -54,7 +54,7 @@
     <Compile Include="Views\IMvxBindable.cs" />
     <Compile Include="Views\MvxView.cs" />
     <Compile Include="Target\MvxNSTextFieldTextTargetBinding.cs" />
-    <Compile Include="Target\MvxNSCollectionViewItemSourceTargetBinding.cs" />
+    <Compile Include="Target\MvxNSCollectionViewItemsSourceTargetBinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
