@@ -10,6 +10,7 @@
     <RootNamespace>Cirrious.MvvmCross.Binding.Mac</RootNamespace>
     <AssemblyName>Cirrious.MvvmCross.Binding.Mac</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
