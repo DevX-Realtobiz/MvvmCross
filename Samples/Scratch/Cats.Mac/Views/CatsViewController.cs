@@ -6,6 +6,8 @@ using MonoMac.AppKit;
 using Cirrious.MvvmCross.Mac.Views;
 using Cirrious.MvvmCross.ViewModels;
 using Cats.Core.ViewModels;
+using Cirrious.MvvmCross.Binding.BindingContext;
+using Cirrious.MvvmCross.Binding.Mac.Views;
 
 namespace Cats.Mac
 {
@@ -38,6 +40,23 @@ namespace Cats.Mac
 
 		#endregion
 
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			var column = new MvxTableColumn ();
+			column.Identifier = "First";
+			column.BindingText = "Text Name";
+			column.HeaderCell.Title = "Name";
+			CatsTableView.AddColumn (column);
+
+			var source = new MvxTableViewSource (CatsTableView);
+			CatsTableView.Source = source;
+
+			var set = this.CreateBindingSet<CatsViewController, CatsViewModel> ();
+			set.Bind (source).For(v => v.ItemsSource).To (vm => vm.Breeds);
+			set.Apply ();
+		}
 
 
 		//strongly typed view accessor
