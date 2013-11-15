@@ -16,7 +16,7 @@ namespace Cats.Core.Services
 			_connection.CreateTable<Breed>();
 		}
 
-		public List<Breed> KittensMatching(string nameFilter)
+		public List<Breed> BreedsMatching(string nameFilter)
 		{
 			return _connection.Table<Breed>()
 					.OrderBy(x => x.Name)

@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratch", "Scratch", "{AB86
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Core", "Samples\Scratch\Cats.Core\Cats.Core.csproj", "{E5EC5855-10E9-4BC6-9D28-D3C468612BA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Mac", "Samples\Scratch\Cats.Mac\Cats.Mac.csproj", "{4D3F2B03-2956-469D-BB63-11E394968AC7}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossUI", "CrossUI", "{29DFAB47-5C04-40B4-A999-4DB0B940371B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossUI.Core", "CrossUI\CrossUI.Core\CrossUI.Core.csproj", "{D9CBBFFE-57E8-4E97-9E16-C34BC4C52827}"
@@ -70,6 +72,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.Touch", "Plugins\Cirrious\Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.Touch\Cirrious.MvvmCross.Plugins.Sqlite.Touch.csproj", "{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.Mac", "Plugins\Cirrious\Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.Mac\Cirrious.MvvmCross.Plugins.Sqlite.Mac.csproj", "{881E1DE3-91E7-43A3-8DA3-63A593552209}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9879475-DA44-492D-A8A6-A7626DAB69FC}"
+	ProjectSection(SolutionItems) = preProject
+		MvvmCross_Mac.sln = MvvmCross_Mac.sln
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,6 +145,24 @@ Global
 		{2A845DA1-4612-4526-838C-5712A75184D7}.Release|iPhone.Build.0 = Release|iPhone
 		{2A845DA1-4612-4526-838C-5712A75184D7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{2A845DA1-4612-4526-838C-5712A75184D7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.AppStore|iPhone.ActiveCfg = AppStore|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.AppStore|iPhone.Build.0 = AppStore|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|iPhone.Build.0 = Release|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4D3F2B03-2956-469D-BB63-11E394968AC7}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
@@ -503,6 +528,7 @@ Global
 		{2A845DA1-4612-4526-838C-5712A75184D7} = {D74F3535-B780-46CA-9C7F-32071C0D3D0F}
 		{C99B1B9B-8D30-44C9-9788-75A1FFFEEB08} = {D74F3535-B780-46CA-9C7F-32071C0D3D0F}
 		{E5EC5855-10E9-4BC6-9D28-D3C468612BA4} = {AB863D9E-2549-428A-8361-B490DC2529D6}
+		{4D3F2B03-2956-469D-BB63-11E394968AC7} = {AB863D9E-2549-428A-8361-B490DC2529D6}
 		{D9CBBFFE-57E8-4E97-9E16-C34BC4C52827} = {29DFAB47-5C04-40B4-A999-4DB0B940371B}
 		{9499E72B-FD7C-4A9B-AB6C-0F9B7359257C} = {C82EB44B-3C0B-4BB7-830B-58EDCAEC6410}
 		{66F850D2-89CD-4BC0-AA5D-3DD8F14E5552} = {C82EB44B-3C0B-4BB7-830B-58EDCAEC6410}

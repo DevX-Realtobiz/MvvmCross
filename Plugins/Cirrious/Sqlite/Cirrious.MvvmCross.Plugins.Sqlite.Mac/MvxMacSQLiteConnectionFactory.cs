@@ -9,9 +9,9 @@ using System;
 using System.IO;
 using SQLite;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite.Touch
+namespace Cirrious.MvvmCross.Plugins.Sqlite.Mac
 {
-    public class MvxTouchSQLiteConnectionFactory : ISQLiteConnectionFactory
+	public class MvxMacSQLiteConnectionFactory : ISQLiteConnectionFactory
     {
         public ISQLiteConnection Create(string address)
         {

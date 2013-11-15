@@ -8,14 +8,14 @@
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Plugins;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite.Touch
+namespace Cirrious.MvvmCross.Plugins.Sqlite.Mac
 {
     public class Plugin
         : IMvxPlugin
     {
         public void Load()
         {
-            Mvx.RegisterSingleton<ISQLiteConnectionFactory>(new MvxTouchSQLiteConnectionFactory());
+			Mvx.RegisterSingleton<ISQLiteConnectionFactory>(new MvxMacSQLiteConnectionFactory());
         }
     }
 }
